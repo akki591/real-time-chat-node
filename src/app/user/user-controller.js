@@ -51,6 +51,13 @@ class UserController extends Controller {
         };
         return res.status(user.statusCode).send(response);
       }
+
+      const response = {
+        error: true,
+        statusCode: 400,
+        message: 'Invalid username or password',
+      };
+      return res.status(response.statusCode).send(response);
     } catch (error) {
       throw error;
     }
