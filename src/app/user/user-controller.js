@@ -55,6 +55,13 @@ class UserController extends Controller {
       throw error;
     }
   }
+
+  async getAll(req, res) {
+    const response = await this.service.getAllWithCondition({
+      _id: { $ne: req.user.id },
+    });
+    return res.status(response.statusCode).send(response);
+  }
 }
 
 export default new UserController(userService);
